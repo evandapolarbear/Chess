@@ -5,7 +5,7 @@ class Board
   attr_accessor :board
 
   def initialize()
-    @board = Array.new(8) {Array.new(8){NullPiece.new}}
+    @board = Array.new(8) {Array.new(8){NullPiece.instance}}
   end
 
   def move(start, end_pos)

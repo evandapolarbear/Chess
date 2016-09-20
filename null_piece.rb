@@ -1,16 +1,11 @@
+require 'singleton'
+
 class NullPiece
 
-  def self.instance
-    if self.class.instance_of?(NullPiece)
-      self.class
-    else
-      NullPiece.new
-    end
-  end
+  include Singleton
 
-  def occupied?(pos)
-    poss = pos
-    false
+  def to_s
+    '    |'
   end
 
 end

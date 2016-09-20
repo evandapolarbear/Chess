@@ -9,30 +9,22 @@ class Display
     @cursor = Cursor.new([0,0], board)
   end
 
-  # def render(board)
-  #   #@board.board.each_with_index do |cols,idx1|
-  #     @board.board.each_with_index do |space, idx2|
-  #       print "+---" * 8 + "+" + "\n"
-  #       print "|   " * 8 + "|" + "\n"
-  #       # print "+---" * 8 + "+" + "\n"
-  #     end
-  #     print "+---" * 8 + "+" + "\n"
-  #     puts "\n"
-  #   #end
-  # end
-  halp = 0
   def render(board)
     @board.board.each_with_index do |col , idx1|
       # print "+---" * 8 + "+" + "\n"
-      print "\n|"
+      print "\n"
       col.each_with_index do |space , idx2|
+        print space.to_s
         if @cursor.cursor_pos == [idx1, idx2]
-          print render_cursor
-        elsif @board[[idx1, idx2]].is_a?(NullPiece)
-          print render_occupied
-        else
-          print render_unoccupied
+          print render_cursor(idx1, idx2)
+        # else
+        #   print "X"
+        # elsif @board[[idx1, idx2]].is_a?(NullPiece)
+        #   print render_occupied
+        # else
+        #   print render_unoccupied
         end
+        print "|    "
       end
     end
   end
@@ -45,8 +37,8 @@ class Display
     return " X |"
   end
 
-  def render_cursor
-    return " C ".colorize(:red) + "|"
+  def render_cursor(idx1, idx2)
+    @board[[idx1, idx2]].to_s.colorize(:background => :yellow) #Background hasshhhhhhhhhhhhhish
   end
 
   def cursor_test
@@ -61,5 +53,4 @@ end
 
 board = Board.new
 
-display = Display.new(board)
-display.cursor_test
+Display.new(board).cursor_test
